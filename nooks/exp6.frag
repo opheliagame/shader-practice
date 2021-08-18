@@ -28,16 +28,16 @@ float archSDF (vec2 st, vec2 s) {
   float x = min(s.x, max(-st.x, st.x));
   float y = min(s.y, max(-st.y, st.y));
   float p = 1.0;
-  c = pow(s.x, 0.5) - min(pow(( x+s.x) * p, 0.5), pow((-x+s.x) * p, 0.5)) + 
-      pow(s.y, 0.5) - min(pow(( y+s.y) * p, 0.5), pow((-y+s.y) * p, 0.5));  
+  c = min(pow(( x+s.x) * p, 0.5), pow((-x+s.x) * p, 0.5)) + 
+      min(pow(( y+s.y) * p, 0.5), pow((-y+s.y) * p, 0.5));  
   return c;
 }
 
 float windowShape (vec2 st, vec2 s, float blur) {
-  float arch = fill(archSDF(st, s), 0.5, blur);
+  float arch = fill(archSDF(st, s), 1.0, blur);
   float sx = st.x*2.0-1.0 < 0.0 ? (st.x)-pow(s.x, 0.5) : (st.x)-1.0+pow(s.x, 0.5);
   float rect = fill(rectSDF(st+vec2(0.0, s.y/2.0), vec2(s.x, s.y)), 1.0, blur);
-  return arch+rect-arch*rect ;
+  return arch ;
 }
 
 
@@ -82,11 +82,11 @@ void main() {
   c = mix(c, WHITE*0.6, shadow1*horizon*w2*w1);
   c = mix(c, WHITE, (1.0-horizon)*cloud);
 
-  // float testw = windowShape(st, vec2(0.5), 0.01);
-  // float testsdf = archSDF(st, vec2(0.5));
+  float testw = windowShape(st, vec2(0.5), 0.01);
+  float testsdf = archSDF(st, vec2(0.5));
   // float testr = fill(rectSDF(st+vec2(0.0, 0.25), vec2(0.5)), 1.0, 0.01);
   // float testr1 = fill(rectSDF(st+vec2(pow(0.5, 0.5)/12.0, 0.25), vec2(0.25, 0.5)), 1.0, 0.01);
-  // c = mix(WHITE, BLACK, testw);
+  c = mix(WHITE, BLACK, testw);
   // c = mix(c, RED, testr1);
 
   gl_FragColor = vec4(WHITE, 1.0);

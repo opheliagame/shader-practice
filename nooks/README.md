@@ -14,3 +14,6 @@
 
 ### day 5
 ![kharagpur](../out/nooks/exp5-1.png)
+
+### day 6
+![prayer](../out/nooks/exp6-2.png)
