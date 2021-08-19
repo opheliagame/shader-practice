@@ -17,3 +17,6 @@
 
 ### day 6
 ![prayer](../out/nooks/exp6-2.png)
+
+### day 7
+![balcony](../out/nooks/exp8-1.png)
