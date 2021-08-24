@@ -20,3 +20,6 @@
 
 ### day 7
 ![balcony](../out/nooks/exp8-1.png)
+
+### day 8
+![star patterns](../out/nooks/exp9-1.png)
