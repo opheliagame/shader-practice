@@ -10,8 +10,12 @@ uniform float u_time;
 #include "../lygia/generative/random.glsl";
 #include "../lygia/generative/cnoise.glsl";
 #include "../lygia/generative/snoise.glsl";
+#include "../lygia/generative/gnoise.glsl";
+#include "../lygia/generative/fbm.glsl";
 #include "../lygia/space/cart2polar.glsl";
 #include "../lygia/space/rotate.glsl";
+#include "../lygia/sdf/lineSDF.glsl";
+#include "../lygia/draw/stroke.glsl";
 
 void main() {
   vec2 st = gl_FragCoord.xy/u_resolution.xy;
@@ -55,5 +59,8 @@ void main() {
 
   // c = vec3(r_grid.x, r_grid.y, 0.0);
   // c = vec3(random(fv.x));
+  
+  c = mix(vec3(0.0), vec3(1.0), fbm(orig_st));
+
   gl_FragColor = vec4(c, 1.0);
 }

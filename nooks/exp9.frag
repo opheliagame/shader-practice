@@ -92,7 +92,11 @@ void main() {
 
   vec3 c = WHITE;
   // c = mix(WHITE, GREY*2.0, cloud);
-  c = mix(c, BLACK, line);
+  // c = mix(c, BLACK, line);
+  float s1 = fill(starSDF(st, 8, 0.31), 0.7, 0.01);
+
+  vec2 mod_st = st*4-2;
+  c = mix(c, BLACK, s1);
   // c = mix(c, RED, s4);
 
   gl_FragColor = vec4(WHITE, 1.0);
