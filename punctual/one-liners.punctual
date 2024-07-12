@@ -1,0 +1,3 @@
+-- vertical lines meditative 
+setfy (cos $ fx*22) $ hline (cos fx + osc fx) 0.1 >> video; 
+

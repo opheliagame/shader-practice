@@ -1,0 +1,63 @@
+-- 
+
+b << fract(cos(floor(etime*2)) * 100000) * cps * 3;
+res << fract(cos(floor(etime*2)) * 1000000) * abs(cos(b))*40;
+
+flx << floor(fx*res);
+frx << fract(fx*res);
+rx1 << fract(cos(flx) * 100000) * (sign(cos(flx)));
+rx2 << fract(cos(flx+1) * 100000) * (sign(cos(flx+1)));
+-- x << rx1*(1-frx) + rx2*frx;
+
+-- random gen
+rnd1 << sin (sin 60 * 60);
+
+x << osc 0.091*osc 0.085;
+y << osc 0.07*osc 0.06;
+
+mx << cos (fx*res+x+y);
+
+c1 << [0.80, 0.70, 0.85];
+c2 << [0.12, 0.60, 0.33];
+
+-- tile [1, res] $
+hline 
+-- clip [0.3, 0.5] 
+(0.1 ~~ 0.8 $ cos (fx*2 + mx)) 
+(px*6+0.2) * 0.5
+>> rgba;
+
+
+////// live 
+b << fract(cos(floor(etime*2)) * 100000) * cps * 5;
+t << etime * b;
+res << fract(cos(floor(etime*2)) * 1000000) * abs(cos(b))*10;
+
+flx << floor(fx*res);
+frx << fract(fx*res);
+rx1 << fract(cos(flx) * 100000) * (sign(cos(flx)));
+rx2 << fract(cos(flx+1) * 100000) * (sign(cos(flx+1)));
+x << rx1*(1-frx) + rx2*frx;
+
+flx1 << floor(fy*res);
+frx1 << fract(fy*res);
+rx11 << fract(cos(flx1) * 100000) * (sign(cos(flx1)));
+rx21 << fract(cos(flx1+1) * 100000) * (sign(cos(flx1+1)));
+y << rx11*(1-frx1) + rx21*frx1;
+
+x1 << osc 0.091*osc 0.085;
+y1 << osc 0.07*osc 0.06;
+
+mx << cos (fx*res+x1+y1);
+
+tile [1, res/2] $
+-- zoom (cos (frx*0.9)) $
+move [flx*res/2*0.01 + t, 0] $ 
+fit 1 $ 
+ iline                                      -- what the heck will just change this to vline and see what happens hehe, not a good idea then 
+-- (0.1 ~~ 0.8 $ cos (fx*4 + mx))
+-- x
+[x, y] [0, 0]
+(px*6*res + 
+-- abs(sin(cps)) * 
+0.25) * (0.5) >> video <> 4;

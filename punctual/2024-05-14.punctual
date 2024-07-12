@@ -1,0 +1,33 @@
+-- listening to jack johnson!
+-- celebrating my live coding anniversary with some code that I have been wanting to figure out for a while 
+-- and finally figured out yesterday
+
+-- i measure the time that it takes me to make the entire screen unreadable
+-- and it took me less than a minute today haha xD 
+-- cheers to that
+
+-- this is vv happy
+-- aand stopping now
+
+t << etime*0.1;
+
+b << fract(cos(floor(etime*2)) * 100000) * cps * 3;
+res << fract(cos(floor(etime*2)) * 1000000) * abs(cos(b))*40;
+
+flx << floor(fx*res);
+frx << fract(fx*res);
+rx1 << fract(cos(flx) * 100000) * (sign(cos(flx)));
+rx2 << fract(cos(flx+1) * 100000) * (sign(cos(flx+1)));
+x << rx1*(1-frx) + rx2*frx;
+
+yres << res/6;
+fly << floor(fy*yres);
+
+amp << 0.2;
+xs << fract ([x, x-1, x+1] *: 0.2);
+
+move [flx*yres*0.01 + t, 0] $
+tile [1, yres] $
+-- tile [(min yres frx)+1, yres] $
+-- move [fly*0.1 + etime*0.01, 0] $
+hline x (px*6*yres + abs(sin(cps))*amp) >> video <> 4;

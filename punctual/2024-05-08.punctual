@@ -1,0 +1,89 @@
+-- doing only punctual visuals today, hope everyone is having a good sunday
+-- stopping here!!! thanks for watching <3 
+
+
+t << etime*0.2;
+r1 << fract(cos(ft*0.001) * 100000);
+r2 << fract(cos(ft*0.001+hi+pi*pi+r1) * 100000);
+f << fract(ft*1.0+t)*1.0;
+n1 << r1 * (1-f) + r2 * f;
+
+r11 << fract(cos(fr*0.001) * 100000);
+r21 << fract(cos(fr*0.001+pi+r11) * 100000);
+f1 << fract(fr*1.0)*1.0;
+n2 << r11 * (1-f1) + r21 * f1;
+
+setfxy [fract(fr+n2), fract(ft+n1)] $
+-- tile [1, 10] $
+hline 0 0.2 * (fract(fy+n1)*fract(fx+n2)) >> video;
+
+-- fract((fy+n1) ) * 0.5 >> video;
+-- (fract(fy+n1)*fract(fx+n2)) * 0.5 >> video;
+
+-- point [(bipolar n1), fract (fy + sin fx)] * 1.0 >> video;
+
+-- n1 * 0.8 >> video;
+
+-- setfy [0fy] $
+
+hline 0.0 0.1 >> video;
+
+
+// day 2 
+t << etime*0.0002;
+m1 << sin(t);
+
+r1 << fract(cos (floor(fx*10+(mid*10))) * 100000);
+dx << cos (fract(fy*5)) * 0.2;
+dy << cos (fract(fx*10) + fract(fx*12+mid*10) + r1) * 0.2;
+--  + cos(r1 + m1) + sin(r1);
+
+r2 << fract(cos (floor((fy + dy)*10) ) * 100000);
+
+ny << ((fy + dy*sign (r1+m1))*3) ;
+
+setfy [floor (fract ny + fract (ny*r1*2) + fract(ny*2))] $
+-- tile [1, 4] $
+fit 1 $
+hline 0.0 0.3 * 0.5 >> video <> 4;
+
+
+-- sign $ bipolar $ fract(fy) >> red;
+
+
+-----
+t << etime*0.02;
+m1 << sin(t);
+r1 << fract(cos (floor(fx*10)) * 20000);
+dx << cos (fract(fy*5)) * 0.2;
+dy << cos (fract(fx*4) + fract(fx*6+mid*10) + r1) * 0.2;
+-- ny << ((fy + dy*sign (r1+m1))*3) ;
+ny << fy + unipolar ( cos(dy*sign(r1) * 20));
+c << unipolar [osc (0.2+fx*0.1), osc 0.8+lo, osc 0.6];
+tile [r1*2+1, floor $ ny*10] $
+setfy [fract (ny) + r1] $
+hline 0 0.2 * c * 0.15 >> video <> 6;
+0.94 >> fdbk;
+
+t << etime*0.02;
+m1 << sin(t);
+r1 << fract(cos (floor(fx*10+mid*4)) * 20000);
+dx << cos (fract(fy*5)) * 0.1;
+dy << cos (fract(fx*4) + fract(fx*6+mid*10) + r1) * 0.2;
+ny << fy + unipolar ( sin(dy*sign(r1) * 10));
+c << unipolar [osc 0.0, osc 0.8, osc 0.3+mid];
+tile [1, floor $ ny*lo*10 + 4+r1] $
+setfx [fract (ny) + r1] $
+vline 0 (0.1+lo*0.5) * c * 0.1 >> video <> 6;
+0.94 >> fdbk;
+
+t << etime*0.02;
+r1 << fract(cos (floor(fx*20*lo+fy*10*hi)) * 10000);
+dx << cos (fract(fy*6) + fract(fy*10+mid*10) + r1) * 0.2;
+ny << fy + ( cos(dx));
+c << unipolar [osc $ 0.4+mid, osc lo, osc 0.3];
+tile [1, floor $ ny +r1*10] $
+setfy [floor (ny) ] $
+hline 0 (lo*0.5) * c * 0.11 >> video <> 6;
+0.92 >> fdbk;
+
