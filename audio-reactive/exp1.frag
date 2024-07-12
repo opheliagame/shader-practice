@@ -64,28 +64,32 @@ void main() {
   vec2 st2 = (gl_FragCoord.st/u_tex3Resolution.xy);
   float mod1 = cnoise(uv*15.00+d1+t)*0.005;
   float mod2 = cnoise(st2*10.0+d1+t)*0.005;
+  float mod3 = gnoise(floor(uv.y*100.0+t))*0.005;
 
   float n = gnoise(fft);
 
   vec4 i1 = texture2D(u_tex1, uv + mod1);
   vec4 i2 = texture2D(u_tex2, uv + mod1);
   vec4 i3 = texture2D(u_tex3, uv + mod1);
-  vec4 i4 = texture2D(u_tex4, uv + mod2);
+  vec4 i4 = texture2D(u_tex4, uv + vec2(0.0, mod3));
   vec4 i5 = texture2D(u_tex5, uv + mod1);
 
   float r1 = floor(random(fft) * 10.0);
   vec2 st = floor(uv * r1);
   float b1 = random(st) < 0.5 ? 1 : 0;
 
-  float c = fill(circleSDF(uv), fft*5.0, 0.01);
+  float c = fill(rectSDF(uv+vec2(0.0, 0.565)), 1.0, 0.01);
 
   vec3 color = mix(BLACK, WHITE, st.x);
   // color = mix(color, YELLOW, n);
 
-  float b2 = i3.x * (gnoise( fft*3.0 +t));
+
+
+  float b2 = i3.x * (gnoise( (fft*3.0) +t));
+  // float b2 = i3.z;
   b2 += fbm(uv+t*0.0001*fft);
   // vec4 tex = mix(i3, i4, gnoise(i3.x* fft*10.0 +t));
-  vec4 tex = mix(i3, i4, b2);
+  vec4 tex = mix(i4, i3, 1.0-c);
   // vec3 tex = mix(i3.xyz, i4.xyz, b2);
   // tex = i3;
 
@@ -93,7 +97,7 @@ void main() {
   gl_FragColor = tex;
   // gl_FragColor = vec4(tex, 1.0);
   // gl_FragColor = vec4(color, 1.0);
-  // gl_FragColor = i5;
+  // gl_FragColor = i3;
 
 
 }

@@ -1,0 +1,20 @@
+-- Punctual, an audiovisual live coding language, version 0.4.4.5
+-- Chromium/Chrome/Edge/Opera browser required
+-- Press Shift-Enter to (re)evaluate/activate code
+-- documentation @ https://github.com/dktr0/Punctual.git
+-- help/discussion @ Estuary discord server
+
+p << [249/255.0,188/255.0,207/255.0];
+b << [101/255.0,153/255.0,229/255.0];
+y << [248/255.0,233/255.0,8/255.0];
+
+uv << [fx, fy] + [fx, fy] * unipolar rnd*2.0;
+g << bipolar $ fract (uv * 12.0) + cos(fx * 4.0 + time) * 0.1; 
+h << bipolar $ fract (uv * 8.0) + cos ( fract (fx*10.0 + time)) * 0.1; -- + sin(fract (fy * fr) * 0.1) * 0.1;
+j << bipolar $ fract (uv * 4.0) + cos(fx * 2.2 + time) * 0.1;
+
+fit 1 $ rect g [0.6, 0.6] * y >> video;
+fit 1 $ rect h [0.2, 0.2] * p >> video;
+fit 1 $ rect j [0.3, 0.4] * b >> video;
+
+-- 0.96 >> fdbk;

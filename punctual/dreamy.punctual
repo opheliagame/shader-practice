@@ -1,0 +1,18 @@
+angle << atan(ft- (sin $ osc 0.2)/fr);
+im1 << img "https://raw.githubusercontent.com/opheliagame/shader-practice/main/out/%20pink.png";
+x << sin $ (ft + etime);
+y << cos $ (frt * fr);
+r << 0.4+lo+rnd;
+res << 4;
+a << max [dist [-0.5, 0.5]] [dist [0.5, 0.5]];
+
+-- fit 1 $ setfxy [a, a*fr] $ tile [res, res] $ circle [x, y] r * im1 * 0.5 >> video;
+-- 0.2 >> fdbk;
+(fb $ [fxy, angle]) * 0.5 >> video;
+
+-- ヤッホー this is opheliagame 
+-- will try to not break the stream today by writing verbose punctual!
+-- you can find me writing shaders and painting yellow and pink colors a lot of times!!  
+-- thanks everyone!!
+-- <333333333333333333333333333333333333333
+

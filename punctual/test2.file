@@ -1,0 +1,60 @@
+res << 5.0;
+st << [fract $ unipolar $ ft*res, fract $ unipolar $ fr*res];
+a << (fy > 0) * max [dist [-0.5, -0.5]] [dist [0.5, -0.5]]; 
+sdf << (a == 0) * 2 + a;
+t << (sdf-0.01) / (1.0-0.01);
+ss << 1.0 - (t * t * (3.0-2.0*t));
+
+mod1 << sin $ (ft+etime) * 2.0 + 3.0; 
+stres << [mod1, mod1];
+ft1 << atan (ft-0.5/fr); 
+ast << [fract $ unipolar (abs (ft1) * mod1), fract $ unipolar $ sdf * mod1];
+d1 << setfxy ast (dist [-0.5, -0.5]);
+d2 << setfxy ast (dist [0.5, -0.5]); 
+a1 << (fy > 0) * max d1 d2; 
+sdf1 << (a1 == 0) * 2 + a1;
+t1 << (sdf1-0.01) / (1.0-0.01);
+ss1 << 1.0 - (t1 * t1 * (3.0-2.0*t1));
+
+ft2 << atan (ft-0.5 / 0.0);
+ast2 << [fract $ unipolar (abs (ft2) * 1.0), fract $ unipolar $ sdf1 * 1.0]; 
+
+-- fit 1 $ tile [res, res] ss*1.0 >> red; 
+fit 1 $ ss1 * 0.3 >> blue; 
+-- move[0.5, -0.2] ss >> red;
+-- fit 1 $ circle (ast) [0.1] >> green; 
+
+
+-- this works for one step 
+res << 5.0;
+ft1 << atan (ft-0.5/fr); 
+cst << [ft, fr];
+d1 << setfxy cst (dist [-0.5, -0.5]);
+d2 << setfxy cst (dist [0.5, -0.5]); 
+a1 << (fr > 0) * max d1 d2; 
+sdf1 << (a1 == 0) * 2 + a1;
+ast1 << [fract $ unipolar $ ft1*1.0, fract $ unipolar $ sdf1*1.0];
+ast1x << fract $ unipolar $ ft1*1.0;
+ast1y << fract $ unipolar $ sdf1*1.0;
+d11 << setfxy ast1 (dist [-0.5, -0.5]);
+d21 << setfxy ast1 (dist [0.5, -0.5]); 
+a11 << (ast1y > 0) * max d11 d21; 
+sdf11 << (a11 == 0) * 2 + a11;
+t << (sdf11-0.01) / (1.0-0.01);
+ss << 1.0 - (t * t * (3.0-2.0*t));
+fit 1 $ ss >> red;
+
+
+-- mod1 << sin $ (ft+etime) * 2.0 + 3.0; 
+-- ft2 << atan (ast1x-0.5/ast1y); 
+-- d11 << setfxy ast1 (dist [-0.5, -0.5]);
+-- d21 << setfxy ast1 (dist [0.5, -0.5]); 
+-- a11 << (ast1y > 0) * max d11 d21; 
+-- sdf2 << (a11 == 0) * 2 + a11;
+-- ast2 << [fract $ unipolar $ ft2*mod1, fract $ unipolar $ sdf2*mod1];
+-- ast2y << fract $ unipolar $ sdf2*1.0;
+-- 
+-- d12 << setfxy ast2 (dist [-0.5, -0.5]);
+-- d22 << setfxy ast2 (dist [0.5, -0.5]); 
+-- a12 << (ast2y > 0) * max d12 d22; 
+-- sdf3 << (a12 == 0) * 2 + a12;

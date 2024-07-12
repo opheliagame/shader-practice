@@ -1,0 +1,25 @@
+-- Punctual, an audiovisual live coding language
+-- Chromium/Chrome/Edge/Opera browser required
+-- Press Shift-Enter to (re)evaluate/activate code
+-- documentation @ https://github.com/dktr0/Punctual.git
+-- help/discussion @ Estuary discord server
+
+-- didn't have any audio this time, but will plan this better next time!! thanks everyone <3 
+-- byeeeeee
+
+res << 3;
+x << osc 0.4 /2;
+y << osc 2.5 /2;
+rot << osc x*y;
+s << osc 1.2;
+c << unipolar [rot*x, rot*y, rot*2, 0.5] +: 0.2;
+
+a << min [dist[-0.5, 0.5]] [dist[0.5, 0.5]];
+
+fit 1 $ setfxy [unipolar a, unipolar fr] $ spin rot $ tile [res, res] $ zoom [s, s] $ circle [x, y] 0.8 * c * 0.1 >> rgba;
+-- fit 1 $ tile [res, res] $ zoom [s, s] $ spin rot $ circle [x, y] 0.4 * c * 0.5 >> rgba;
+0.999 >> fdbk;
+
+-- what unit is ft and fr in. what is the min and max?
+-- fit 1 $  circle [fr*2-1, ft] 0.1 * c >> rgba;
+-- fit 1 $ circle [-1, 1] 0.1 * c >> rgba;

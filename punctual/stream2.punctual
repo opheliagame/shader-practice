@@ -1,0 +1,28 @@
+-- Punctual, an audiovisual live coding language, version 0.4.4.5
+-- Chromium/Chrome/Edge/Opera browser required
+-- Press Shift-Enter to (re)evaluate/activate code
+-- documentation @ https://github.com/dktr0/Punctual.git
+-- help/discussion @ Estuary discord server
+
+-- haven't really thought of anything for today so this is going to be very random
+-- in the spirit of live coding im prepared for everything to break haha !!
+-- since there is no audio you can listen to what i am listening currently 
+-- its a playlist called "erza furman - perpetual motion people full album stream" on youtube
+
+-- thank you everyone for watching today!! 
+-- this is really not as fun without music but until till then i guess 
+-- see you again, byeeeee <3 <3
+
+a << max [dist [0.5, 0.5]] [dist [-0.5, 0.5]];
+res << 4;
+y << osc 0.1;
+rot << sin ( unipolar $ (saw (fx * 2.9)) * 0.001);
+f1 << unipolar $ osc 0.7;
+c << unipolar $ [osc f1, osc (f1*6), osc (f1*2), 0.5];
+
+sig1 << hline [y] [0.05];
+
+-- [0.5, 0.0, 0.5, 0.5]
+-- fit 1 $ spin y $ setfxy [a, fr*a] $ tile [res, res] $ spin (rot*4) $ sig1 * c * 0.4 >> rgba;
+fit 1 $ spin rot $ sig1 * c * 0.3 >> rgba;
+0.99 >> fdbk;

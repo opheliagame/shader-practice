@@ -1,0 +1,33 @@
+-- Punctual, an audiovisual live coding language, version 0.4.4.5
+-- Chromium/Chrome/Edge/Opera browser required
+-- Press Shift-Enter to (re)evaluate/activate code
+-- documentation @ https://github.com/dktr0/Punctual.git
+-- help/discussion @ Estuary discord server
+
+-- haven't thought of anything specific today 
+-- maybe will try to make an sdf of a shape i saw recently on a rug 
+-- and today realised that i have a cup with the same shape!
+-- going to stop now!!
+-- couldn't draw the shape that i wanted to draw today
+-- so keeping that for next time! see you <3 <3 
+
+
+-- from lygia shader library
+-- max(abs(st.x) * .866025 + st.y * .5, -st.y * 0.5)
+
+y1 << unipolar $ cos ((fy) * (unipolar $ osc 0.2) * 8.0) + 0.1;
+
+f3 << max [max [abs(fx) * 0.866025 + (fy-0.5) * 0.5] [ (fy-0.5) * -0.5 ]] [max [abs(fx) * 0.866025 + (1.0-fy-0.5) * 0.5] [ (1.0-fy-0.5) * -0.5 ]];
+f2 << (f3 - (0.28)) / (0.29-0.28);
+tri << min [1.0] [max 0.0 f2];
+f1 << tri * tri * (3.0 - 2.0 * tri);
+t1 << 1.0 - tri;
+
+c << unipolar [osc 0.1, osc fr, osc 0.4, 0.5] *: unipolar rnd;
+
+
+rot << (osc fx) * cos 0.01;
+
+fit 1 $ tile [2, 2] $ move [0.0, -0.5] $ t1 * 0.5 >> rgba;
+-- fit 1 $ move [osc 0.2, osc 0.3] $ circle [0, 0] 0.2 >> rgba;
+-- 0.99 >> fdbk;

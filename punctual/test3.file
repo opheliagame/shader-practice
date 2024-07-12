@@ -1,0 +1,19 @@
+-- f1 << 1.0 - (step [abs (cos (etime)), 0.01] [c1]); 
+im1 << img "https://raw.githubusercontent.com/opheliagame/shader-practice/main/out/%20pink.png";
+r << sin $ rgbr im1;
+g << sin $ cos $ rgbg im1;
+b << sin $ cos $ rgbb im1;
+pink << [0.97, 0.73, 0.81];
+
+mod1 << sin $ r*etime;
+
+spin[mod1, 1] im1 * 0.1 >> video;
+-- im1 * mid * 0.2 >> video; 
+-- g * mid * pink * 0.2 >> video;
+-- b * pink * 0.2 >> video;
+
+ (fb frt) * 0.9 >> video;
+
+-- (b) * rgbr pink * 0.2 >> red;
+-- g * rgbg pink * 0.2 >> green;
+-- r * rgbg pink * 0.2 >> blue;

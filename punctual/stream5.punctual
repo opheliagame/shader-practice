@@ -1,0 +1,21 @@
+-- Punctual, an audiovisual live coding language, version 0.4.4.5
+-- Chromium/Chrome/Edge/Opera browser required
+-- Press Shift-Enter to (re)evaluate/activate code
+-- documentation @ https://github.com/dktr0/Punctual.git
+-- help/discussion @ Estuary discord server
+
+-- listening to john mayer tonight - sob rock 
+-- looking for a rect sdf, max abs fx/sx , abs fy/sy
+-- going to stop today, will try more grid stuff later!
+-- thanks everyone <3 and nanditi! 
+-- gots to jam soon!!!!!!! <3 <3 
+
+res << 4.0;
+x << floor(fx * res)/res ;
+y << floor(fy * res)/res ;
+c << unipolar $ [osc 0.4, cos (x*10), osc 0.6, 0.5];
+
+r << max [abs fx/res] [abs fy/res];
+rect [x, 0.0] [1.0, 1.0] * c * 0.7 >> rgba;
+
+-- 0.985 >> fdbk;

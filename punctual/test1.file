@@ -1,0 +1,22 @@
+https://punctual.savamala.top/docs/
+
+s1 << max (saw 0.25)  0.5;
+s2 << max (dist [-0.5, -0.5]) (dist [0.5, -0.5]);
+s3 << s2 * (max fy 2.0);
+c1 << dist [s3, s3];
+
+f1 << 1.0 - (step [abs (cos (etime)), 0.01] [c1]); 
+-- f1 * 0.5 >> red;
+-- step [0.5, 0.1, 0.2] [0.1] * 0.5 >> video;
+-- c1 * 0.2 >> green;
+g1 << (osc (ebeat));
+im1 << img "https://raw.githubusercontent.com/opheliagame/shader-practice/main/out/nooks/exp9-1.png";
+g1 << min hi mid;
+r << sin $ rgbr im1;
+g << sin $ cos $ rgbg im1;
+b << sin $ cos $ rgbb im1;
+pink << [0.97, 0.73, 0.81];
+
+(b) * rgbr pink * 0.5 >> red;
+g * rgbg pink * 0.5 >> green;
+r * rgbg pink * 0.5 >> blue;

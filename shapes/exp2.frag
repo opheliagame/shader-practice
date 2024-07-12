@@ -41,7 +41,7 @@ void main() {
   float t = u_time/2.0;
 
   
-  // st = (st)*4.0;
+  st = (st)*4.0;
   // st = abs(st);
   
   float b = max(dot(st, vec2(1.0, 1.73)*0.5), st.x);
@@ -67,26 +67,28 @@ void main() {
 
 
   // 8 point 
-  // float d1 = fill(starSDF(rotate(fract(st*4.0), radians(45)), 4, 1.0), 1.0, 0.01);
+  float d11 = fill(starSDF(rotate(fract(st*4.0), radians(45)), 4, 1.0), 1.0, 0.01);
   float d1 = stroke(rectSDF(rotate(fract(st*4.0), radians(0)), vec2(1.0)), 1.0, 0.1, 0.01);
-  float d2 = fill(starSDF(rotate(fract(st*4.0), radians(45/2)), 8, 0.38), 1.45,  0.01);
+  float d2 = fill(starSDF(rotate(fract(st*4.0)+vec2(0.1, 0.0), radians(45/2)), 8, 0.38), 1.1,  0.01);
+  float d21 = fill(starSDF(rotate(fract(st*4.0)-vec2(0.37, 0.0), radians(45)), 4, 0.0), 0.5,  0.01);
 
   // 10 point
-  s = vec2(1.0, 0.95);
-  hexIndex = round(vec4(st, st - vec2(0.5, 1.0)) / s.xyxy);
-  offset = vec4(st - hexIndex.xy*s, st - (hexIndex.zw + 0.5)*s);
-  res = dot(offset.xy, offset.xy) < dot(offset.zw, offset.zw) 
-    ? vec4(offset.xy, hexIndex.xy) 
-    : vec4(offset.zw, hexIndex.zw);
-  float d3 = fill(polySDF(rotate(fract(st*4.0), radians(0)), 10), 1.0, 0.01);
+  // this doesnt work!
+  // s = vec2(1.0, 0.95);
+  // hexIndex = round(vec4(st, st - vec2(0.5, 1.0)) / s.xyxy);
+  // offset = vec4(st - hexIndex.xy*s, st - (hexIndex.zw + 0.5)*s);
+  // res = dot(offset.xy, offset.xy) < dot(offset.zw, offset.zw) 
+  //   ? vec4(offset.xy, hexIndex.xy) 
+  //   : vec4(offset.zw, hexIndex.zw);
+  // float d3 = fill(polySDF(rotate(fract(st*4.0), radians(0)), 10), 1.0, 0.01);
   
-  float d4 = fill(starSDF(rotate(fract(st*4.0), radians(0)), 10, 0.33), 0.4, 0.01);
-  float d5 = fill(starSDF(rotate(fract(st*4.0), radians(36/2)), 10, 0.815), 0.6, 0.01);
-  float d7 = fill(starSDF(rotate(fract(st*4.0), radians(0)), 10, 0.8), 1.0, 0.01);
+  // float d4 = fill(starSDF(rotate(fract(st*4.0), radians(0)), 10, 0.33), 0.4, 0.01);
+  // float d5 = fill(starSDF(rotate(fract(st*4.0), radians(36/2)), 10, 0.815), 0.6, 0.01);
+  // float d7 = fill(starSDF(rotate(fract(st*4.0), radians(0)), 10, 0.8), 1.0, 0.01);
 
-  float d9 = stroke(starSDF(rotate(fract(st*4.0), radians(0)), 10, 0.33), 0.4, 0.1, 0.01);
-  float d10 = stroke(starSDF(rotate(fract(st*4.0), radians(36/2)), 10, 0.815), 0.6, 0.1, 0.01);
-  float d6 = stroke(starSDF(rotate(fract(st*4.0), radians(0)), 10, 0.8), 1.0, 0.1, 0.01);
+  // float d9 = stroke(starSDF(rotate(fract(st*4.0), radians(0)), 10, 0.33), 0.4, 0.1, 0.01);
+  // float d10 = stroke(starSDF(rotate(fract(st*4.0), radians(36/2)), 10, 0.815), 0.6, 0.1, 0.01);
+  // float d6 = stroke(starSDF(rotate(fract(st*4.0), radians(0)), 10, 0.8), 1.0, 0.1, 0.01);
 
 
   // float s1 = smoothstep(0.5-0.01, 0.5+0.01, s);
@@ -94,20 +96,19 @@ void main() {
   // float s3 = stroke(s, 0.8, 0.5, 0.2);
   // float s4 = stroke(s, 0.6, 0.5, 0.2);
 
-  vec3 color = mix(PINK, ORANGE, random(res.zw)*c);
-  color = GREEN;
-  // color = mix(color, GREEN, res.y);
-  // color = mix(color, YELLOW, c);
-  // color = mix(color, PINK, d1);
-  // color = mix(color, PINK, d3);
-  color = mix(color, YELLOW, d3);
-  color = mix(color, BLUE, (1.0-d7));
-  color = mix(color, RED, d5);
-  color = mix(color, YELLOW, d4);
+  vec3 color = mix(PINK, ORANGE, random(res.zw)*3.0);
+  // color = GREEN;
+  // color = mix(color, YELLOW, c1);
+  // color = mix(color, YELLOW, d21);
 
-  color = mix(color, WHITE, d6);
-  color = mix(color, WHITE, d10);
-  color = mix(color, WHITE, d9);
+  // color = mix(color, YELLOW, d3);
+  // color = mix(color, BLUE, (1.0-d7));
+  // color = mix(color, RED, d5);
+  // color = mix(color, YELLOW, d4);
+
+  // color = mix(color, WHITE, d6);
+  // color = mix(color, WHITE, d10);
+  // color = mix(color, WHITE, d9);
 
 
   gl_FragColor = vec4(color, 1.0);

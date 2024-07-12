@@ -1,0 +1,36 @@
+t2 << img "https://raw.githubusercontent.com/opheliagame/videos/main/24-04-07-momiji.jpg";
+t1 << img "https://raw.githubusercontent.com/opheliagame/videos/main/24-04-07-sakura1.jpg";
+
+-- r << rgbb im1;
+-- r << [rgbb im1, rgbb im1, rgbb im1] * im2;
+-- between [r-px,r+px] fr >> video;
+-- fit 1 $ im2*0.5 >> video;
+
+
+uv << [rgbr t1, rgbg t1]
++: sin [0.05,0.04];
+t3 << setfxy uv t2; 
+-- fit 1 $ tile [1, 1] $ t3 >> video;
+
+
+t2 << img "https://raw.githubusercontent.com/opheliagame/videos/main/24-04-07-momiji.jpg";
+t1 << img "https://raw.githubusercontent.com/opheliagame/videos/main/24-04-07-sakura1.jpg";
+
+i << abs(fract (lo*10));
+
+r1 << sin(10000000* fract (fx*(lo)));
+r2 << sin(10000000* fract (fy*(hi)));
+-- r << rgbr t1;
+-- using a technique i saw today on the punctual discord mentioned by dktr0!
+uv << [rgbr t1, rgbb t1] +: abs(sin [0.02, 0.04]);  
+t3 << setfxy (uv/2) t2;
+
+-- spin [r2*i*0.1] $
+move r1 $ 
+-- move (unipolar [sin hi, sin lo]) $ 
+tile [2] $ 
+t3*0.5 >> video <> 6;
+-- between [r-px, r+px] fr >> video <> 6; 
+
+
+-- fb fxy * 0.7 >> video;

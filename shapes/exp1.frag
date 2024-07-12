@@ -82,7 +82,7 @@ void main() {
   // color = mix(color, PINK, f);
   // color = mix(color, ORANGE, f2);
 
-  color = mix(color, PINK, f4);
+  color = mix(color, PINK, f1);
 
 
   gl_FragColor = vec4(color, 1.0);

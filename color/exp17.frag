@@ -43,8 +43,8 @@ void main() {
 
   vec3 c = mix(BLUE, ORANGE+0.1*WHITE, smoothstep(0.7-0.1, 0.7+0.1, st.y));
   c = mix(c, mix(WHITE, BLUE, 0.0), (1.0-smoothstep(0.7-0.1, 0.7+0.1, st.y))*n);
-  // c = mix(c, mix(WHITE, BLUE, 0.5), (sun*1.0)*smoothstep(0.7-0.1, 0.7+0.1, st.y));
-  // c = mix(c, YELLOW, (1.0-smoothstep(0.3-0.2, 0.3+0.2, sun))*sky);
+  c = mix(c, mix(WHITE, BLUE, 0.5), (sun*1.0)*smoothstep(0.7-0.1, 0.7+0.1, st.y));
+  c = mix(c, YELLOW, (1.0-smoothstep(0.3-0.2, 0.3+0.2, sun))*sky);
   c = mix(c, WHITE, mod3*(1.0-sky));
   // c = mix(c, 1.0-WHITE, smoothstep(0.0, 1.0, (sun)*st.y+1.0)*0.2);
   // c = mix(c, YELLOW, n*sky*(1.0-sun));
