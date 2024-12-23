@@ -1,0 +1,15 @@
+frxy x y res = [(x * res/2) - floor (x*res/2 + 0.5), (y * res/2) - floor (y*res/2 + 0.5)];
+rand x = sin(10000000* x);
+invert im = [1.0 - rgbr im, 1.0- rgbg im, 1.0- rgbb im, 1.0];
+
+im1 << img "https://raw.githubusercontent.com/opheliagame/videos/refs/heads/main/24-12-23-torii-gate.png";
+t << etime * (1.2);
+m1 << abs $ [1, 2] * sin ( fy * ( 1) + fx) * 0.4;
+
+
+fit 1 $
+ tile [abs $ sin ( fx + (m1 * sin (seq [fx, fy])) + t) + m1 + 2 ] $
+-- setfx [fx + 2 + (abs $ sin (fy*2 + t ) * 2 ) ] $
+-- setfx [bipolar $ fract $ unipolar fx] $
+gate (1.0- (abs $ sin $ fx + t)) $ 
+(im1) * 1.0 >> add <> 4;

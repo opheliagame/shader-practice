@@ -1,0 +1,5 @@
+frxy x y res = [(x * res/2) - floor (x*res/2 + 0.5), (y * res/2) - floor (y*res/2 + 0.5)];
+pixelate r x = setfxy ((floor (fxy*r)+0.5)/r) x;
+
+
+tile 2 $ setfx [bipolar $ fract $ unipolar fx]

@@ -13,16 +13,9 @@ res << 20; n1 x = fract(cos(x) * 100000) * (sign(cos(x)));
 noise x = (n1 $ floor(x)) *(1- fract(x)) + (n1 $ floor(x+1)) * fract(x);
 n << noise $ fx * res + sin(fy*4+t*2) + fy * 4 + t;
 
+r = sin(60 * 100 + etime); 
+frxy x y res = [(x * res/2) - floor (x*res/2 + 0.5), (y * res/2) - floor (y*res/2 + 0.5)];
+rxy x y r = [x * cos r - y * sin r, x * sin r + y * cos r];
+pick xs = seq xs;
+invert im = [1.0 - rgbr im, 1.0- rgbg im, 1.0- rgbb im, 1.0];
 
-t << etime * 1.0; -- t << pi/4;
-rand x = sin(10000000* x);
-col a b c d t = a + b * cos(6.283185 * (c*t+d));
-c << col [rand fx, rand fx, rand fx] [rand $ floor $ fy*6, 0.5, rand $ fr + abs(sin t)] [0.5, 1.0, 1.0] [0.00, 0.3, 0.7] fx;
-y << floor (fract (fy * 10)) + sin (fy * 3);
-p1 << floor (fract (fx  * 13) + 0.0 + abs(sin(y+t))); -- abs(cos(t))); p2 << floor $ fract (fy * 12) + 0.5;
-
-res << 20; n1 x = fract(cos(x) * 100000) * (sign(cos(x)));
-noise x = (n1 $ floor(x)) *(1- fract(x)) + (n1 $ floor(x+1)) * fract(x);
-n << noise $ fx * res + sin(fy*4+t*2) + fy * 4 + t;
-
-tile [fx*n, n] $ hline n 0.3 * (p1 * p2) * n*2 * 0.01 * (1.0-c) >> add;
