@@ -1,0 +1,9 @@
+t << time * 0.0001; t1 << time * cps * 1;
+yres << abs $ cos (t1 * 0.01 + pi) * 4; xres << abs $ sin cps * 1;
+
+move [floor (fy * yres) * abs (cos t) * 2, floor (fx * xres) * abs (cos $ t1 + pi/2) * 3] $
+setfy (fy * 0.5 + cos (fx * abs (cos $ hi + t + fx) * cos t1 * 6) * 0.2) $
+-- setfx (fx * 0.5 + cos (fy + abs (cos $ t + fy) * cos t1 * 2) * 0.5) $
+zoom (osc ((floor (fx * 😎 + floor (fy * 5)) + t) / 3 * (-1)) $
+tile [abs (cos $ 64+ t1) * 12 + 2 , 0] $
+vline 0 0.2 * [floor (xres * fx) / xres, floor (fy * yres) / yres, 1 ] >> add;

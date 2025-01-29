@@ -1,0 +1,9 @@
+t << etime * 0.5;
+rand x = sin(10000000* x);
+c << zoom (1.0- rand (fract (fx * t))/2) $ 1.0-( fit (1/pi) $ (floor (dist [0, 0.5]) + floor (dist [0, -0.5])));
+
+zoom (0.5 + (  (1.0-fy) * fract t )) $
+setfxy [fr + cos t, ft + t/20] $
+tile (floor (pi*2)) $
+zoom (1 + abs (sin t)) $
+ [  c/2, zoom (seq[1.2, 1.5]) c, zoom 3 c ] *1 >> add;

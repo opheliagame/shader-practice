@@ -3,3 +3,4 @@ pixelate r x = setfxy ((floor (fxy*r)+0.5)/r) x;
 
 
 tile 2 $ setfx [bipolar $ fract $ unipolar fx]
+setfx ((-1)*fx)

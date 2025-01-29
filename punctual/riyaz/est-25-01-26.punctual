@@ -1,0 +1,18 @@
+t << time * 0.05;
+p << (floor [sin 0.2 * 4, osc 0.4 * 4] /: 10) + floor (osc 2 * 10) /: 10; 
+c << circle (p) (floor (sin (t/ cos t) * 4) / 4);
+spin (p / (sin $ fxy * 0.0005)) $
+fit 1 $ 
+c + osc c >> add;
+
+
+--- 
+t << time * 0.0005;
+p << (floor [sin 0.2 * 4, osc 0.4 * 4] /: 10) + floor (osc 2 * 10) /: 10; 
+c << circle (p) (floor  (sin (t / cos t) * 4) / 4);
+
+-- move ( sin $ p*0.0002) $
+spin (p / (sin $ fxy * 0.01)) $
+-- zoom (fract ( t/10 ) * (-1)) $
+fit 1 $ -- setfxy [fr, ft] $ -- tile (pi * sin p * 12) $ 
+ c  >> add;

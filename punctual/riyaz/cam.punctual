@@ -1,0 +1,7 @@
+c << cam; t << etime * 0.5;
+c2 << setfx ((-1)*fx) c;
+res << floor $ fx*4 + sin(t)*2;
+tex << tile res $ (c+:c2)/2;
+move [0.5 * seq [rgbr tex, rgbg tex, rgbb tex], t] $
+tex >> blend;
+tile res $ (setfx ((-1)*fx) c) *imid >> blend;

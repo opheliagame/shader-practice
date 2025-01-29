@@ -1,0 +1,8 @@
+im1 << img "https://raw.githubusercontent.com/opheliagame/videos/refs/heads/main/25-01-26-menstrual-cup.png";
+t << time * 0.1;
+
+fit 0.7 $
+spin [ sin $ fy*(-1) + fx + t/3] $
+move [fx + (sin $ fy*2 + fx*2 + t)] $
+tile (slow (2) (seq [2, 3, 4]) * (sin $ seq [3, 4, 5])) $
+im1 >> add;

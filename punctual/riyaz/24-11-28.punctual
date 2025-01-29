@@ -1,0 +1,18 @@
+t << etime * 2;
+c y r = ((circle [0, y] (r*2) * circle [0, -1*y] (r*2)));
+m << unipolar $ cos fx;
+c1 << tile [2, 2] $ setfx [bipolar $ fract $ unipolar $ fx*4] $ spin 0.5 $ min [circle [0, m/3] (m + 1)]  [circle [0, -1*m/3] (m+1) ];
+c2 l w = (abs fy) - (w * max [1 - (( abs (fx/l)) ** 2)] 0);
+col a b c d t = a + b * cos(6.283185 * (c*t+d));
+cc1 t = col [0.5, 0.5, 0.5] [0.5, 0.5, 0.5]	[1.0, 1.0, 1.0]	[0.00, 0.33, 0.67] t;
+y << bipolar $ fract $ unipolar $ fy * 2 + t/10;
+
+cm <<  spin (slow (floor $ t/20) $ seq [0, 0.5, 1]) $ smoothstep [0.01, 0] (c2 (0.5+sin y*0.2) 1); 
+
+
+-- setfxy [sin $ fx*2, fy] $ (1.0 - (floor $ dist [0, 0]) )* 0.5 >> add;
+ fit 1 $ setfxy [fr, ft] $ 
+tile (pi*1.2* (fast [seq [1, 1.2, 1.4]] $ 1.0+floor (seq [ilo]))) $ zoom (1) $
+([cm]  ) * cc1 (unipolar $ ( fy*pi/3)*cm*cm  ) >> blend;
+
+

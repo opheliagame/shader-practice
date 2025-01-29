@@ -1,0 +1,42 @@
+t << etime;
+rand x = sin(10000000* x); n1 x = fract(cos(x) * 100000) * (sign(cos(x)));
+noise x = (n1 $ floor(x)) *(1- fract(x)) + (n1 $ floor(x+1)) * fract(x);
+im1 << img "https://raw.githubusercontent.com/opheliagame/videos/refs/heads/main/mushi.png";
+
+res << abs $ noise (rand fx * 2 + sin t);
+tile (floor $ res*10 + 2) $
+spin (sin $ fx + t) $
+im1 >> add;
+
+--- 
+t << etime;
+rand x = sin(10000000* x); n1 x = fract(cos(x) * 100000) * (sign(cos(x)));
+noise x = (n1 $ floor(x)) *(1- fract(x)) + (n1 $ floor(x+1)) * fract(x);
+im1 << img "https://raw.githubusercontent.com/opheliagame/videos/refs/heads/main/mushi.png";
+
+res << abs $ noise (rand fxy * 2 + rand (floor $ sin t * 10));
+tile (floor $ res*10 + 2) $
+spin (sin $ fx + t) $
+im1 * 0.05 >> add;
+
+---
+t << etime;
+rand x = sin(10000000* x); n1 x = fract(cos(x) * 100000) * (sign(cos(x)));
+noise x = (n1 $ floor(x)) *(1- fract(x)) + (n1 $ floor(x+1)) * fract(x);
+im1 << img "https://raw.githubusercontent.com/opheliagame/videos/refs/heads/main/mushi.png";
+
+res << abs $ noise (rand (seq [fx, fy]) * 0.5 + (noise t *2));
+tile (floor $ res*5 + 2) $
+spin (sin $ fx + t) $
+im1 * 0.9 >> add;
+--- 
+
+t << etime;
+rand x = sin(10000000* x); n1 x = fract(cos(x) * 100000) * (sign(cos(x)));
+noise x = (n1 $ floor(x)) *(1- fract(x)) + (n1 $ floor(x+1)) * fract(x);
+im1 << img "https://raw.githubusercontent.com/opheliagame/videos/refs/heads/main/mushi.png";
+
+res << abs $ noise (rand (seq [fx, fy]) * 0.5 + (noise t *2));
+tile (floor $ res*5 + 2) $
+spin (rand $ floor $ fxy*res + t*3) $
+im1 * 0.9 >> add;

@@ -1,0 +1,10 @@
+t << time * 0.000005; res1 << hi * fract (t * 50 * (1.0-lo)) * 24 + fx * cos (fy*12);
+im1 << img "https://raw.githubusercontent.com/opheliagame/videos/refs/heads/main/24-04-07-momiji.jpg"; im2 << img "https://raw.githubusercontent.com/opheliagame/videos/refs/heads/main/24-04-07-sakura1.jpg";
+p1 << sign $ osc (floor (fy * res1 * cps));
+
+move [cos (fx + t*1000) * fx * fy, cos (fx + t*100000) * 1] $
+fit 1 $ tile [pi*2/3, 1.2] $
+move [sin (floor (fy * res1 + 1)) * 0.2, tan (floor (fx * 10 * res1 + 1)) * 1] $
+zoom [1, (sin $ t*10) * 2 + 1] $
+(im1 * 0.4 * (p1) +
+ im2 * ((-1)*p1) * 0.5) * (floor $ (fx + fy) * res1 * cps)>> add <> 0.4;
