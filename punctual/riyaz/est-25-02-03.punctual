@@ -1,0 +1,7 @@
+pcos << img "https://upload.wikimedia.org/wikipedia/commons/5/5d/Polycystic_ovary.jpg"; t << time * 0.1 + time * ((0.05 ));
+a1 << fft $ cos (fy * fr + t *2 ) ; a2 << (lo + 0.3) * ((fx/2 * fy/2 * abs (cos $ fy /2) * abs (cos $ fx/2)));
+
+move [0, cos (fx + t) ] $
+tile (abs (cos (fx*a2 + fy *3 + t/10000)) + pi ) $
+spin (a1) $
+pcos * 0.8 >> add <> 2;
