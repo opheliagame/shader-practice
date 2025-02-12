@@ -1,0 +1,9 @@
+t << time * 0.05 * 1; fish1 << img "http://raw.githubusercontent.com/opheliagame/videos/refs/heads/main/fish1.png"; fish2 << img "http://raw.githubusercontent.com/opheliagame/videos/refs/heads/main/fish2.png";
+mod1 << sin 0.00015; 
+f2 << move [bipolar $ fract $ cos $ fx + t * 4, 0] $ fish2;
+setfy (bipolar $ fract $ fy * cos (fx * 1 + t) + cos (fx * 4 * (cos $ t ) + t * mod1 * 10) * 0.5) $
+setfx (   fx * cos (fx * 2 + t )) $ --  abs mod1 * 10
+tile [3, abs mod1 * 3] $
+fish1 * f2 * 0.6
+-- [rgbr fish1, rgbg (fish1 + f2), rgbb f2] * 0.2 
+>> add;
