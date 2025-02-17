@@ -1,0 +1,14 @@
+t << etime * 1;
+v << 0;
+x1 << cos $ v + t; y1 << cos $ v + pi/2 + t;
+x2 << cos $ v + t; y2 << cos $ v + pi/2 + t;
+c << hsvrgb $ [(unipolar $ osc (0.2)), 1, 1];
+
+move [((osc 2) * 0.001), 0] $
+zoom [(1.0 - (abs $ cos $ t * 0.5) * 0.001)] $ 
+fb >> add;
+
+l1 << mono $ line [x1*0.65,y1*0.65] [x2* 1,y2*1] 0.05;
+
+fit 1 $ tile 4 $ l1 * c >> blend;
+fit 1 $ move [0.25, 0.25] $ tile 4 $ l1 * c >> blend;
