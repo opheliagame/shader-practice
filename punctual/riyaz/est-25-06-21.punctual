@@ -1,0 +1,17 @@
+-- i keep making these without knowing why god why
+t << time * sin (fx);
+c1 << 
+-- spin fr $
+setfxy [cos $ fx * 2 + t, cos $ fy * 2+ t] $ circle 0 0.5;
+
+-- need to get rid of the thingies, you def know what i mean
+spin (fract (fr * 0.5 + fy * 0.2 + t * 10) * 0.0001) $ 
+-- spin 0.0001 $ -- simple but doesnt work okay
+setfxy (fract [cos $ fr * 2 + t, cos $ ft * 2 + t]) $
+fit 1 $ 
+-- setfxy ([ abs (cos $ ft * 1 + t), abs (cos $ fr * 1 + t)]) $ 
+vline 0 (0.1) * 0.5 >> add <> 2;
+
+
+-- that clearly did not work
+-- [fb * sin fx * 0.6] >> add;

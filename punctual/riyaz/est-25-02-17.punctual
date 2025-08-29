@@ -1,0 +1,40 @@
+----- eventually for plantasia
+
+t << time * 0.1; c << hsvrgb $ [(unipolar $ cos (floor( fx * 6 ) * 0.5 + t * 0.5 * abs (sin 0.0001))), 1, 1];
+
+x << bipolar $ fract $ fx + t * [2, 0.5, 3, 4];  
+
+-- zoom [1 + sin 0.005, 1] $ fb fxy * 0.8 >> add;
+fit 1 $ tile [3, 1] 
+$ move [bipolar $ fract $ 
+
+fx + 
+
+-- (floor $ fy * 6) * (0.2~~0.5) (sin 0.05) + 
+
+(floor $ fy * 4 * ( cos(10000000*  (floor $ fy * 20) + t ) ) ) * 0.5 
+
+ + t, 0] 
+$ vline x 0.15 * c * 0.6 >> add;
+
+
+--------
+t << time * 0.1; c << hsvrgb $ [(unipolar $ cos (floor( fx * 6 ) * 0.5 + t * 0.5 * abs (sin 0.0001))), 1, 1];
+
+x << bipolar $ fract $ fx + t * [2, 0.5, 3, 4];  
+
+-- spin [0, 0.01] $ 
+zoom [1.5, 1] $
+fb fxy * 0.9 >> add;
+
+fit 1 $ tile [3, 1] 
+$ move [bipolar $ fract $ 
+
+fx + 
+
+(floor $ fy * 6) *  0.2 + 
+
+(floor $ fy * 12 * ( cos(10000000*  (floor $ fy *5 ) + t ) ) ) * 0.2 
+
+ + t, 0] 
+$ vline x 0.15 * c * 0.6 >> add;
