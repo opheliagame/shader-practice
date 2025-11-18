@@ -1,0 +1,74 @@
+-- hiii
+-- hehe i like this 
+-- trying loopback
+
+t << time * seq [0.3, 0.5];
+rand x = sin(100000.0 * x);
+c << zoom (1.0-( (fr))/2) $ 1.0-( fit (1/pi) $ ( fract (dist [0, 0.5]) 
+        + floor (dist [0, -0.5])));
+
+r1 << floor $ rand ( floor (ft*pi*3) )* pi*2;
+
+zoom [0.5 + (  (1.0-fy*pi/4)  ), (sin t) * pi/2] $
+setfxy [fr + sin (fx + t*0.5), ft + t/20] $
+tile ( (r1 + pi)) $
+-- zoom (1 + abs (sin t)) $
+[zoom (seq[1.2, 1.2+ihi*4]) c, c/2 ,zoom 3 c,seq[zoom 3 c, c/2]] 
+<> 2 >> rgba;
+
+— 
+-- hiii
+-- hehe i like this 
+-- trying loopback
+
+t << time * seq [0.3, 0.5];
+rand x = sin(100000.0 * x);
+c << zoom (1.0-( (fxy))/2) $ 1.0-( fit (1/fr) $ ( fract (dist [sin t, 0.5]) 
+        + floor (dist [0, -0.5])));
+
+r1 << floor $ rand ( floor (ft*pi*3) )* pi*2;
+
+zoom [0.5 + (  (1.0-fy*pi/4)  ), (sin t) * pi/2] $
+setfxy [fr + sin (fx + t*0.5), ft + t/20] $
+tile ( (r1 + pi)) $
+-- zoom (1 + abs (sin t)) $
+[zoom (seq[1.2, 1.2+ihi*4]) c, c/2 ,zoom 3 c, c / seq[ft, fr] * 0.7] 
+<> 2 >> rgba;
+
+
+—- 
+-- hiii
+-- trying loopback
+-- is it only me or this is actually nice 
+-- not sure, couldnt check audio yet
+-- checking loopback now, i think it worked!! 
+
+t << time * seq [0.3, 0.5, 0.1];
+rand x = sin(100000.0 * x);
+c <<  1.0-( fit (1) $ ( floor (dist [sin t, 0.5]) 
+        + floor (dist [0.5, -1 * cos t])));
+
+r1 << floor $ rand ( floor (ft*pi*3) )* pi*3;
+
+zoom [0.5 + (  (1.0-fy*pi/4)  ), (sin t) * pi/2] $
+setfxy [fr + cos (fx + t), ft + t/2] $
+tile ( (r1 + pi)) $
+-- zoom (1 + abs (sin t)) $
+[zoom (seq[1.2, 1.2+ihi*4]) c, c/2 ,zoom 3 c, c / seq[ft, fr] * 0.2] 
+<> 2 >> rgba;
+
+
+— 
+-- hiii
+-- hehe 
+-- i made 3 copies already!
+-- bad sounds gone now 
+
+t << time * seq [0.1];
+rand x = sin(100000.0 * x);
+c <<  abs (sin t) - ( fit (1) $ ( floor (dist [0, 0.5]) 
+        + floor (dist [0, -1 * sin t * cos t])));
+r1 << floor $ rand ( floor (ft*pi*3) )* 1.2;
+zoom [0.5 + ( (1.0-fy*pi/4)  ), 1.5] $
+tile ( (r1 + pi)) $
+[zoom (1.2) c, c ,zoom 1 c, fr/2] <> 2 >> rgba;
