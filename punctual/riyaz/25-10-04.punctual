@@ -1,0 +1,95 @@
+-- inspiration
+-- https://ia800809.us.archive.org/BookReader/BookReaderImages.php?zip=/7/items/dli.watson.01/dli.watson.01_jp2.zip&file=dli.watson.01_jp2/dli.watson.01_0000.jp2&id=dli.watson.01&scale=1&rotate=0
+-- wait for a bit for this version to get chaotic, 1 min or so
+
+softb << [0, 0, 255]/:255;
+
+t << etime * 0.5;
+res << 132;
+weft << hline 0 0.1;
+warp << vline 0 0.1;
+
+
+[0.3, 0.4, 0.5, 0.5 + sin t] >> blend;
+
+setfx [fx + cos (fy * 8 + t) / ((fy + 1) * 6 )]  $ tile res $ warp * 0.9 >> blend;
+setfy [fy + cos (fx * 8 + t) / ((fx + 1) * 6 )] $ tile res $ weft * 0.9 >> blend;
+
+tile (res*4) $
+(warp + weft) * softb * 0.8 >> add;
+
+----
+
+softb << [0, 0, 255]/:255;
+
+t << etime * 0.5;
+res << 132;
+weft << hline 0 ((sin $ fx * 8) * 0.005);
+warp << vline 0 0.1;
+
+
+[0.3, 0.4, 0.5, 0.5 + sin t] >> blend;
+
+setfx [fx + cos (fy * 8 + t) / (( 1) * 32 )]  $ tile res $ warp * 0.9 >> blend;
+setfy [fy + cos (fx * 8 + t) / (( 1) * 32 )] $ tile res $ weft * 0.9 >> blend;
+
+tile (res*4) $
+(warp + weft) * softb * 0.8 >> add;
+
+
+----- 
+
+
+softb << [0, 10, 255]/:255;
+
+t << etime * 0.5;
+res << 132;
+weft << hline 0 ((sin $ fx * 8) * 0.001);
+warp << vline 0 ((sin $ fy * 12) * 0.0015);
+
+
+[0.3, 0.4, 0.5, 0.4 + sin t] >> blend;
+
+setfx [fx + cos (fy * 8 + t) / (( 1) * 32 )]  $ tile res $ warp * 0.9 >> blend;
+ww << setfy [fy + cos (fx * 32 + t) / (( 1) * 32 )] $ tile (res/2) $ weft * 0.4;
+
+tile (res*4) $
+(warp + weft + ww) * softb * 0.8 >> add;
+
+
+----- 
+
+rand x = sin(10000000* x);
+softb << [0, 10, 255]/:255;
+
+t << time * 0.5;  -- changing this from etime to time makes a huge diff! 
+res << 124;
+weft << hline 0 ((sin $ fx * 8) * 0.001);
+warp << vline 0 ((sin $ fy * 8) * 0.01);
+
+
+[0.3, 0.4, 0.5, 0.4 + sin t] >> blend;
+
+-- move rand (fx * 0.062) * 1
+setfx [fx + rand (fy * 0.062) * 12 + cos (fy * 8 + t) / (( 1) * 32 )]  $ tile res $ warp * 0.9 >> blend;
+ww << setfy [fy + cos (fx * 32 + t) / (( 1) * 32 )] $ tile (res/2) $ weft * 0.4;
+
+tile (res*4) $
+(warp + weft + ww) * softb * 0.8 >> add;
+
+
+----
+rand x = sin(10000000* x);
+softb << [0, 10, 255]/:255;
+t << etime * 0.5;
+res << 92;
+weft << hline 0 ((sin $ fx * 8) * 0.5);
+warp << vline 0 ((sin $ fy * 8) * 0.5);
+[0.3, 0.4, 0.5, 0.4] >> blend;
+
+-- move rand (fx * 0.062) * 1
+setfx [fx + rand (fy * 0.062) * 2  + cos (fy * 32 + t) / (( 1) * 2 )]  $ tile res $ warp * 0.9  >> blend;
+ww << setfy [fy + cos (fx * 32 + t) / (( 1) * 32 )] $ tile (res/2) $ weft * 0.4;
+
+tile (res*4) $
+(warp + weft + ww) * softb * 0.8 >> add;
